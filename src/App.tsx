@@ -3,6 +3,7 @@ import './App.css';
 import Expenses from './components/expenses/Expenses';
 import NewExpense from './components/expenses/newExpense/NewExpense';
 import HelloWorld from './components/HelloWorld';
+import TodoBoard from './components/todo/TodoBoard';
 import Clock from './components/ui/Clock';
 import ClockClass from './components/ui/ClockClass';
 import { ExpenseItemType } from './types';
@@ -26,8 +27,9 @@ function App() {
         <ClockClass />
         <HelloWorld name={'Abdul Kalam'} />
       </div>
-      <NewExpense onExpenseAdd={addExpenseItem} />
-      <Expenses list={expensesList} />
+      {/* <NewExpense onExpenseAdd={addExpenseItem} />
+      <Expenses list={expensesList} /> */}
+      <TodoBoard />
     </div>
   );
 }

@@ -14,3 +14,9 @@ export type ExpenseDateType = {
 export type ExpensesListType = {
   list: Array<ExpenseItemType>;
 };
+
+export type TodoItemType = {
+  id?: string;
+  title: string;
+  description: string;
+};

@@ -1,0 +1,23 @@
+.formContainer {
+  @apply text-black grid md:grid-cols-2 gap-4;
+}
+
+.inputContainer {
+  @apply flex flex-col md:w-[30rem] md:max-w-[100%];
+}
+
+.input {
+  @apply rounded-md p-2;
+}
+
+.inputError {
+  @apply rounded-md p-2 border-2 border-red-500;
+}
+
+.submitButton {
+  @apply border-2 border-black bg-purple-800 rounded-lg p-2 mt-2;
+}
+
+.error {
+  @apply text-red-500 text-sm;
+}

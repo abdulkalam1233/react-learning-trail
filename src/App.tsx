@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Expenses from './components/expenses/Expenses';
+import NewExpense from './components/expenses/newExpense/NewExpense';
+import HelloWorld from './components/HelloWorld';
+import Clock from './components/ui/Clock';
+import ClockClass from './components/ui/ClockClass';
+import { ExpenseItemType } from './types';
 
 function App() {
+  const [expensesList, updateExpensesList] = useState<Array<ExpenseItemType>>(
+    []
+  );
+
+  const addExpenseItem = (item: ExpenseItemType) => {
+    updateExpensesList(prevState => {
+      return [...prevState, item];
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col m-5">
+      <div className="flex flex-row justify-between">
+        <header className="text-2xl font-bold mb-2">Expense Tracker</header>
+        {/* <Clock /> */}
+        <ClockClass />
+        <HelloWorld name={'Abdul Kalam'} />
+      </div>
+      <NewExpense onExpenseAdd={addExpenseItem} />
+      <Expenses list={expensesList} />
     </div>
   );
 }

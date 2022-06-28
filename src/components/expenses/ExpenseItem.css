@@ -1,0 +1,15 @@
+.expense-item {
+  @apply flex items-center mb-2 bg-slate-500;
+}
+
+.expense-item-description {
+  @apply flex justify-between flex-[3] items-center;
+}
+
+.expense-item-title {
+  @apply text-xl font-bold;
+}
+
+.expense-item-amount {
+  @apply text-xl text-white font-bold border-white border-2 bg-fuchsia-500 p-2 rounded-xl;
+}

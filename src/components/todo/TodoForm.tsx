@@ -4,6 +4,7 @@ import Input from '../ui/Input';
 
 export default function TodoForm(props: {
   onSubmit: (data: TodoItemType) => void;
+  id: string;
 }) {
   const [formData, setFormData] = useState<TodoItemType>({
     title: '',
@@ -24,7 +25,7 @@ export default function TodoForm(props: {
   };
 
   return (
-    <form onSubmit={handleSubmit} id="createTodo">
+    <form onSubmit={handleSubmit} id={props.id}>
       <div className="flex flex-col">
         <label>Title</label>
         <Input

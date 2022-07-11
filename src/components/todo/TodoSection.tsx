@@ -7,11 +7,10 @@ import TodoCard from './TodoCard';
 type TProps = {
   title: string;
   items?: Array<TodoItemType>;
-  hasCreate?: boolean;
+  handleCreateTodo?: (data: TodoItemType) => void;
 };
 function TodoSection(props: TProps) {
-  const [todos, updateTodos] = useState<Array<TodoItemType>>(props.items ?? []);
-  const [openCreateTodo, setOpenCreateTodo] = useState<Boolean>(false);
+  const [openCreateTodo, setOpenCreateTodo] = useState<boolean>(false);
 
   const handleOpenCreateTodo = () => {
     setOpenCreateTodo(true);
@@ -22,20 +21,23 @@ function TodoSection(props: TProps) {
   };
 
   const handleCreateTodo = (data: TodoItemType) => {
-    data.id = nanoid();
-    updateTodos(prevState => [...prevState, data]);
-    handleCloseCreateTodo();
+    if (props.handleCreateTodo) {
+      data.id = nanoid();
+      data.category = 'backlog';
+      props.handleCreateTodo(data);
+      handleCloseCreateTodo();
+    }
   };
 
   return (
-    <>
+    <div>
       <div className="flex flex-col">
         <div className="font-bold text-blue-500 self-center">{props.title}</div>
         <div className="mt-2 mb-4 border-b-2"></div>
-        {todos?.map((item: TodoItemType) => {
+        {props.items?.map((item: TodoItemType) => {
           return <TodoCard {...item} key={item.id} />;
         })}
-        {props.hasCreate ? (
+        {props.handleCreateTodo ? (
           <button
             onClick={handleOpenCreateTodo}
             className="font-bold text-2xl border-2 rounded-2xl w-20 p-0 mt-2 bg-blue-600 self-center content-center"
@@ -49,7 +51,7 @@ function TodoSection(props: TProps) {
       {openCreateTodo && (
         <NewTodo onClose={handleCloseCreateTodo} onCreate={handleCreateTodo} />
       )}
-    </>
+    </div>
   );
 }
 

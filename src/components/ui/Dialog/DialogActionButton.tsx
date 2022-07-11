@@ -3,14 +3,10 @@ import { twMerge } from 'tailwind-merge';
 function DialogActionButton(props: {
   title: string;
   onClick: () => void;
-  form?: string;
-  type?: any;
   className?: string;
 }) {
   return (
     <button
-      type={props.type}
-      form={props.form}
       onClick={props.onClick}
       className={twMerge(
         [

@@ -26,7 +26,6 @@ function TodoBoard() {
 
   return (
     <div>
-      <hr className="mt-2 mb-2" />
       <div className="flex flex-row justify-between">
         <div onDrop={e => handleDrop(e, 'backlog')} onDragOver={handleDragOver}>
           <TodoSection

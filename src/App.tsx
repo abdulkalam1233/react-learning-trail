@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { startTransition, Suspense, useState } from 'react';
 import './App.css';
 import HelloWorld from './components/HelloWorld';
 // import TodoBoard from './components/todo/TodoBoard';
@@ -16,7 +16,11 @@ function App() {
       <div className="flex justify-between flex-row">
         <button
           type="button"
-          onClick={() => setTab('todo')}
+          onClick={() => {
+            startTransition(() => {
+              setTab('todo');
+            });
+          }}
           className="inline-block px-6 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-gray-100 focus:text-blue-700 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 active:text-blue-800 transition duration-300 ease-in-out"
         >
           Todo

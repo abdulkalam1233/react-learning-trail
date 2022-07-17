@@ -4,6 +4,7 @@ import HelloWorld from './components/HelloWorld';
 // import TodoBoard from './components/todo/TodoBoard';
 // import Clock from './components/ui/Clock';
 import ClockClass from './components/ui/ClockClass';
+import ErrorBoundary from './components/ui/ErrorBoundary';
 import Loader from './components/ui/Loader';
 const TodoBoard = React.lazy(() => import('./components/todo/TodoBoard'));
 const Expenses = React.lazy(() => import('./components/expenses/Expenses'));
@@ -49,9 +50,11 @@ function App() {
       </div>
       <hr className="mt-2 mb-2" />
       {/* <Expenses list={expensesList} /> */}
-      <Suspense fallback={<Loader />}>
-        {tab === 'todo' ? <TodoBoard /> : <Expenses />}
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<Loader />}>
+          {tab === 'todo' ? <TodoBoard /> : <Expenses />}
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }

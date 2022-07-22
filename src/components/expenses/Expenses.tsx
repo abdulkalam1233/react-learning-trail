@@ -8,11 +8,6 @@ import NewExpense from './newExpense/NewExpense';
 const DATA = [
   {
     title: 'dummy',
-    amount: 10,
-    date: new Date(),
-  },
-  {
-    title: 'dummy2',
     amount: 20,
     date: new Date(
       new Date().getFullYear() - 1,
@@ -21,7 +16,21 @@ const DATA = [
     ),
   },
   {
+    title: 'dummy2',
+    amount: 20,
+    date: new Date(
+      new Date().getFullYear() - 2,
+      new Date().getMonth(),
+      new Date().getDate()
+    ),
+  },
+  {
     title: 'dummy3',
+    amount: 10,
+    date: new Date(),
+  },
+  {
+    title: 'dummy4',
     amount: 30,
     date: new Date(
       new Date().getFullYear(),
@@ -43,7 +52,7 @@ function Expenses() {
     year: new Date().getFullYear(),
   });
 
-  useEffect(() => {
+  const filterData = () => {
     if (filters.search) {
       updateExpensesList(
         DATA.filter(
@@ -58,14 +67,13 @@ function Expenses() {
         DATA.filter(item => item.date.getFullYear() == filters.year)
       );
     }
+  };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.search, filters.year]);
+  useEffect(filterData, [filters.search, filters.year]);
 
   const addExpenseItem = (item: ExpenseItemType) => {
-    updateExpensesList(prevState => {
-      return [...prevState, item];
-    });
+    DATA.push(item);
+    filterData();
   };
 
   return (
